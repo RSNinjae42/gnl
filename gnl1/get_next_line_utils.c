@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/08 18:29:30 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/08 20:18:19 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,44 @@ int	ft_strlen(const char *str)
 	return (x);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s, char const *b)
 {
 	char	*r;
 	int		x;
 	int		y;
 
-	if (!s1)
-				r = malloc(sizeof(char) * (ft_strlen((char *)s2) + 1));
+	if (!s)
+				r = malloc(sizeof(char) * (ft_strlen((char *)b) + 1));
 	else
-		r = malloc(sizeof(char) * (ft_strlen((char *)s1)
-					+ ft_strlen((char *)s2) + 1));
+		r = malloc(sizeof(char) * (ft_strlen((char *)s)
+					+ ft_strlen((char *)b) + 1));
 	if (!r)
 		return (NULL);
 	x = 0;
 	y = 0;
-	if (s1)
+	if (s)
 	{
-		while (s1[y])
-			r[x++] = s1[y++];
+		while (s[y])
+			r[x++] = s[y++];
 	}
 	y = 0;
-	while (s2[y])
-		r[x++] = s2[y++];
+	while (b[y])
+		r[x++] = b[y++];
 	r[x] = '\0';
 	return (r);
 }
 
-char	*ft_newline(char *s, char *line)
+char	*ft_newline(char *s, char **line)
 {
 	int	x;
 
 	x = 0;
 	while (s[x] != '\n')
 		x++;
-	line = malloc(sizeof(char) * (x + 1));
+	*line = malloc(sizeof(char) * (x + 1));
 	if (!line)
 		return (NULL);
-	return (line);
+	return (*line);
 }
 
 int	check_newline(char *s)

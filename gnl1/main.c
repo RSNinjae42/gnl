@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 17:13:47 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/08 18:34:42 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:42:52 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(void)
 		line = get_next_line(fd);
 		if (!line)
 			return (0);
-		//system("leaks a.out");
 		printf("%s", line);
 		x++;
 	}
