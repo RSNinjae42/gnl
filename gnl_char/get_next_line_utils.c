@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/08 20:18:19 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:45:33 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ char	*ft_newline(char *s, char **line)
 	x = 0;
 	while (s[x] != '\n')
 		x++;
-	*line = malloc(sizeof(char) * (x + 1));
-	if (!line)
+	*line = malloc(sizeof(char) * (x + 2));
+	if (!*line)
 		return (NULL);
 	return (*line);
 }

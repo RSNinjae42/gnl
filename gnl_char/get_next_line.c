@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/08 20:18:23 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:48:33 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*ft_read(int fd, char *s)
 	char	*b;
 	char	*aux;
 	int		x;
-	int		y;
 
 	x = 1;
 	while (x != 0)
@@ -34,9 +33,11 @@ static char	*ft_read(int fd, char *s)
 		b[x] = '\0';
 		aux = ft_strjoin(s, b);
 		free (b);
+		free (s);
+		if (!aux)
+			return (NULL);
 		s = aux;
-		y = check_newline(s);
-		if (y == 1)
+		if (check_newline(s) == 1)
 			break ;
 	}
 	return (s);
@@ -72,7 +73,7 @@ static int	ft_clean(char **s)
 		x++;
 	aux = malloc(sizeof(char) * (ft_strlen(s[0]) - x) + 1);
 	if (!aux)
-		return (1);
+		free (aux);
 	y = 0;
 	x++;
 	while (s[0][x])
@@ -81,6 +82,7 @@ static int	ft_clean(char **s)
 		y++;
 		x++;
 	}
+	aux[y] = '\0';
 	free (*s);
 	s[0] = aux;
 	return (0);
@@ -100,11 +102,15 @@ char	*get_next_line(int fd)
 	line = NULL;
 	x = s_line(s, &line);
 	if (x == 1)
+	{
+		free (line);
 		return (NULL);
+	}
 	x = ft_clean(&s);
 	if (x == 1)
 	{
 		free (s);
+		free (line);
 		return (NULL);
 	}
 	return (line);
