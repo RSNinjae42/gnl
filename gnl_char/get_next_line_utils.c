@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/09 17:45:33 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:53:46 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,23 @@ int	check_newline(char *s)
 			return (1);
 		x++;
 	}
+	return (0);
+}
+
+int	ft_copy(char *s, char *aux)
+{
+	int	x;
+
+	s = malloc(sizeof(char) * (ft_strlen(aux) + 1));
+	if (!s)
+		return (1);
+	x = 0;
+	while (aux[x])
+	{
+		s[x] = aux[x];
+		x++;
+	}
+	s[x] = '\0';
+	free (aux);
 	return (0);
 }

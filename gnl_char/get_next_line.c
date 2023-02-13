@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/09 17:48:33 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:57:43 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	ft_clean(char **s)
 		x++;
 	aux = malloc(sizeof(char) * (ft_strlen(s[0]) - x) + 1);
 	if (!aux)
-		free (aux);
+		return (1);
 	y = 0;
 	x++;
 	while (s[0][x])
@@ -84,7 +84,9 @@ static int	ft_clean(char **s)
 	}
 	aux[y] = '\0';
 	free (*s);
-	s[0] = aux;
+	x = ft_copy(*s, aux);
+	if (x == 1)
+		return (1);
 	return (0);
 }
 

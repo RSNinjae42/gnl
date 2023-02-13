@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/09 12:56:13 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:54:47 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_newline(char *s, char **line);
 int		ft_strlen(const char *str);
 int		check_newline(char *s);
+int		ft_copy(char *s, char *aux);
 #endif
