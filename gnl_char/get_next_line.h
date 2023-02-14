@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/14 12:11:59 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:47:27 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ char	*ft_newline(char *s, char **line);
 int		ft_strlen(const char *str);
 int		check_newline(char *s);
 char	*ft_copy(char *s, char *aux);
+void	ft_leaks();
 #endif
