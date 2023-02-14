@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/13 12:57:43 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:16:12 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ static int	ft_clean(char **s)
 		x++;
 	}
 	aux[y] = '\0';
-	free (*s);
-	x = ft_copy(*s, aux);
-	if (x == 1)
+	free (s[0]);
+	s[0] = NULL;
+	s[0] = ft_copy(s[0], aux);
+	if (!s)
 		return (1);
 	return (0);
 }
