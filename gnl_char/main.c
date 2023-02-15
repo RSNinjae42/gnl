@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 17:13:47 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/14 16:58:53 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/15 13:23:13 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,21 @@ int				main()
 	int			i;
 
 	i =0;
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	fd = open("text", O_RDONLY);
 // 	get_next_line(fd, &str);
 //	printf("%s", str);
-str = get_next_line(fd);
-	while ((i <= 6))
+	while ((i <= 3))
 	{
-        printf("line %i=>%s", i + 1, str);
-		if (str && ft_strlen(str) > 0)
-			free(str);
-		i++;
 		str = get_next_line(fd);
+		/* if (!str)
+		{
+			free (str);
+			return (0);
+		} */
+        printf("line %i=>%s", i + 1, str);
+		free(str);
+		i++;
 		// if (i == 5)
 			// sleep(30);
 	}

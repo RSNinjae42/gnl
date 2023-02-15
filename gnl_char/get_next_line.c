@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/14 17:09:33 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/15 13:40:17 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static char	*ft_read(int fd, char *s)
 		if (x == 0 || x == -1)
 		{
 			free (b);
+			free (s);
+			printf("hola\n");
 			return (NULL);
 		}
 		b[x] = '\0';
@@ -37,8 +39,12 @@ static char	*ft_read(int fd, char *s)
 		free (s);
 		free (b);
 		s = aux;
+		printf("s = %s\n", s);
 		if (check_newline(s) == 1)
+		{
+			printf("1\n");
 			break ;
+		}
 	}
 	return (s);
 }
@@ -100,7 +106,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			x;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0))
 	{
 		free (s);
 		s = NULL;
@@ -109,7 +115,7 @@ char	*get_next_line(int fd)
 	s = ft_read(fd, s);
 	if (!s)
 	{
-		free(s);
+		free (s);
 		return (NULL);
 	}
 	line = NULL;
