@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/15 13:38:38 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:02:56 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*ft_strjoin(char const *s, char const *b)
 	while (b[y])
 		r[x++] = b[y++];
 	r[x] = '\0';
+	free ((char *)b);
+	free ((char *)s);
 	return (r);
 }
 
@@ -52,7 +54,7 @@ char	*ft_newline(char *s, char **line)
 	int	x;
 
 	x = 0;
-	while (s[x] != '\n')
+	while (s[x] != '\n' && s[x])
 		x++;
 	*line = malloc(sizeof(char) * (x + 2));
 	if (!*line)

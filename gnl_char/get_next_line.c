@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/15 13:40:17 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:13:46 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,24 @@ static char	*ft_read(int fd, char *s)
 		if (!b)
 			return (NULL);
 		x = (int)read(fd, b, BUFFER_SIZE);
-		if (x == 0 || x == -1)
+		if (x == -1)
 		{
 			free (b);
 			free (s);
-			printf("hola\n");
 			return (NULL);
+		}
+		if (x == 0)
+		{
+			free (b);
+			break ;
 		}
 		b[x] = '\0';
 		aux = ft_strjoin(s, b);
 		if (!aux)
 			return (NULL);
-		free (s);
-		free (b);
 		s = aux;
-		printf("s = %s\n", s);
 		if (check_newline(s) == 1)
-		{
-			printf("1\n");
 			break ;
-		}
 	}
 	return (s);
 }
@@ -73,25 +71,44 @@ static int	ft_clean(char **s)
 	char	*aux;
 	int		x;
 	int		y;
+	int		flag;
 
 	x = 0;
-	while (s[0][x] != '\n')
+	while (s[0][x] != '\n' && s[0][x])
 		x++;
-	aux = malloc(sizeof(char) * (ft_strlen(s[0]) - x) + 1);
+	if (s[0][x] == '\0')
+	{
+		free (*s);
+		*s = NULL;
+		return (0);
+	}
+	else
+		aux = malloc(sizeof(char) * (ft_strlen(s[0]) - x) + 1);
 	if (!aux)
 		return (1);
 	y = 0;
+	flag = 0;
 	x++;
 	while (s[0][x])
 	{
 		aux[y] = s[0][x];
+		flag = 1;
 		y++;
 		x++;
 	}
-	aux[y] = '\0';
-	free (s[0]);
-	s[0] = NULL;
-	s[0] = ft_copy(s[0], aux);
+	if (flag == 1)
+	{
+		aux[y] = '\0';
+		free (s[0]);
+		s[0] = NULL;
+		s[0] = ft_copy(s[0], aux);
+	}
+	else
+	{
+		free (aux);
+		free (s[0]);
+		s[0] = NULL;
+	}
 	if (!s)
 	{
 		free (s);
