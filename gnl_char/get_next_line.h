@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/15 13:38:42 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:19:20 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list
@@ -36,5 +36,6 @@ char	*ft_newline(char *s, char **line);
 int		ft_strlen(const char *str);
 int		check_newline(char *s);
 char	*ft_copy(char *s, char *aux);
+/*QUITAR ES DEL MAIN POR NORMINETTE*/
 void	ft_leaks();
 #endif
