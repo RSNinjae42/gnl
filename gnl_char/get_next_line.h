@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/16 14:58:32 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:00:43 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ typedef struct s_list
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_newline(char *s, char **line);
-int		check_newline(char *s, int y);
 char	*ft_copy(char *s, char *aux);
-void	ft_free(char *s1, char *s2, char *s3, int x);
-/*QUITAR ES DEL MAIN POR NORMINETTE*/
-void	ft_leaks();
+char	*ft_free(char *s, char *b);
+int		check_newline(char *s, int y);
 #endif
