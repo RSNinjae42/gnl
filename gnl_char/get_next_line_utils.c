@@ -6,7 +6,7 @@
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/16 17:04:09 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/16 17:59:38 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strjoin(char *s, char *b)
 		r = malloc(sizeof(char) * (check_newline(s, 1)
 					+ check_newline(b, 1) + 1));
 	if (!r)
-		return (NULL);
+		return (ft_free(r, NULL));
 	x = 0;
 	y = 0;
 	if (s)
@@ -71,8 +71,7 @@ char	*ft_strjoin(char *s, char *b)
 	while (b[y])
 		r[x++] = b[y++];
 	r[x] = '\0';
-	free (s);
-	free (b);
+	ft_free(s, b);
 	return (r);
 }
 
@@ -83,7 +82,10 @@ char	*ft_newline(char *s, char **line)
 	x = 0;
 	while (s[x] != '\n' && s[x])
 		x++;
-	line[0] = malloc(sizeof(char) * (x + 2));
+	if (x == 1)
+		line[0] = malloc(sizeof(char) * (x + 1));
+	else
+		line[0] = malloc(sizeof(char) * (x + 2));
 	if (!line[0])
 	{
 		free (line[0]);
