@@ -3,49 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/15 15:02:56 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/16 15:00:31 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+/* void	ft_free(char *s1, char *s2, char *s3, int x)
+{
+	if (s1)
+		free (s1);
+	if (s2)
+		free (s2);
+	if (s3)
+		free (s3);
+	if (x == 1)
+	{
+		if (s1)
+			s1 = NULL;
+		if (s2)
+			s2 = NULL;
+		if (s3)
+			s3 = NULL;
+	}
+}
+ */
+/* int	ft_strlen(const char *str)
 {
 	int	x;
 
 	x = 0;
-	while (str && str[x])
+	while (str[x])
 		x++;
 	return (x);
+} */
+
+int	check_newline(char *s, int y)
+{
+	int	x;
+
+	x = 0;
+	if (y == 1)
+	{
+		while (s[x])
+			x++;
+		return (x);
+	}
+	else if (y == 0)
+	{
+		if (!s)
+			return (0);
+		while (s[x])
+		{
+			if (s[x] == '\n')
+				return (1);
+			x++;
+		}
+	}
+	return (0);
 }
 
-char	*ft_strjoin(char const *s, char const *b)
+char	*ft_strjoin(char *s, char *b)
 {
 	char	*r;
 	int		x;
 	int		y;
 
 	if (!s)
-		r = malloc(sizeof(char) * (ft_strlen((char *)b) + 1));
+		r = malloc(sizeof(char) * (check_newline(b, 1) + 1));
 	else
-		r = malloc(sizeof(char) * (ft_strlen((char *)s)
-					+ ft_strlen((char *)b) + 1));
+		r = malloc(sizeof(char) * (check_newline(s, 1)
+					+ check_newline(b, 1) + 1));
+	if (!r)
+		return (NULL);
 	x = 0;
 	y = 0;
 	if (s)
-	{
 		while (s[y])
 			r[x++] = s[y++];
-	}
 	y = 0;
 	while (b[y])
 		r[x++] = b[y++];
 	r[x] = '\0';
-	free ((char *)b);
-	free ((char *)s);
+	free (s);
+	free (b);
 	return (r);
 }
 
@@ -65,27 +109,12 @@ char	*ft_newline(char *s, char **line)
 	return (*line);
 }
 
-int	check_newline(char *s)
-{
-	int	x;
-
-	if (!s)
-		return (0);
-	x = 0;
-	while (s[x])
-	{
-		if (s[x] == '\n')
-			return (1);
-		x++;
-	}
-	return (0);
-}
 
 char	*ft_copy(char *s, char *aux)
 {
 	int	x;
 
-	s = malloc(sizeof(char) * (ft_strlen(aux) + 1));
+	s = malloc(sizeof(char) * (check_newline(aux, 1) + 1));
 	if (!s)
 	{
 		free (s);

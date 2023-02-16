@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/15 18:17:45 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/16 15:14:46 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char	*ft_read(int fd, char *s)
 {
 	char	*b;
-	char	*aux;
 	int		x;
 
 	x = 1;
@@ -37,11 +36,10 @@ static char	*ft_read(int fd, char *s)
 			break ;
 		}
 		b[x] = '\0';
-		aux = ft_strjoin(s, b);
-		if (!aux)
+		s = ft_strjoin(s, b);
+		if (!s)
 			return (NULL);
-		s = aux;
-		if (check_newline(s) == 1)
+		if (check_newline(s, 0) == 1)
 			break ;
 	}
 	return (s);
@@ -69,7 +67,7 @@ static int	s_line(char *s, char **line)
 	return (0);
 }
 
-static int	ft_clean(char **s)
+/* static int	ft_clean(char **s)
 {
 	char	*aux;
 	int		x;
@@ -86,7 +84,7 @@ static int	ft_clean(char **s)
 		return (0);
 	}
 	else
-		aux = malloc(sizeof(char) * (ft_strlen(s[0]) - x) + 1);
+		aux = malloc(sizeof(char) * (check_newline(s[0], 1) - x) + 1);
 	if (!aux)
 		return (1);
 	y = 0;
@@ -118,6 +116,65 @@ static int	ft_clean(char **s)
 		return (1);
 	}
 	return (0);
+} */
+
+static int	ft_clean(char **s)
+{
+	char	*aux;
+	int		x;
+
+	x = 0;
+	while (s[0][x] != '\n' && s[0][x])
+		x++;
+	if (s[0][x] == '\0')
+	{
+		free(*s);
+		*s = NULL;
+		return (0);
+	}
+	else
+		aux = malloc(sizeof(char) * (check_newline(s[0], 1) - x) + 1);
+	if (!aux)
+		return (1);
+	if (ft_clean2(s, aux, x) == 1)
+		return (1);
+	return (0);
+}
+
+static int	ft_clean2(char **s, char *aux, int x)
+{
+	int	y;
+	int	flag;
+
+	y = 0;
+	flag = 0;
+	x++;
+	while (s[0][x])
+	{
+		aux[y] = s[0][x];
+		flag = 1;
+		y++;
+		x++;
+	}
+	if (flag == 1)
+	{
+		aux[y] = '\0';
+		free(s[0]);
+		s[0] = NULL;
+		s[0] = ft_copy(s[0], aux);
+	}
+	else
+	{
+		free(aux);
+		free(s[0]);
+		s[0] = NULL;
+	}
+	if (!s)
+	{
+		free(s);
+		return (1);
+	}
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -126,7 +183,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			x;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free (s);
 		s = NULL;
