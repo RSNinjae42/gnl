@@ -6,7 +6,7 @@
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 13:40:49 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/17 17:36:29 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,24 @@ int	ft_clean(char **s)
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
+	static char	*s[OPEN_MAX];
 	char		*line;
 	int			x;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		free (s);
-		s = NULL;
+		free (s[fd]);
+		s[fd] = NULL;
 		return (NULL);
 	}
-	s = ft_read(fd, s);
-	if (!s)
-		return (ft_free(s, NULL));
-	x = s_line(s, &line);
+	s[fd] = ft_read(fd, s[fd]);
+	if (!s[fd])
+		return (ft_free(s[fd], NULL));
+	x = s_line(s[fd], &line);
 	if (x == 1)
 		return (ft_free(line, NULL));
-	x = ft_clean(&s);
+	x = ft_clean(&s[fd]);
 	if (x == 1)
 		return (ft_free (line, NULL));
 	return (line);

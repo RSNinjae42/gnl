@@ -22,10 +22,12 @@ void	ft_leaks(void)
 int	main(void)
 {
 	int		fd;
-	char	*str;
+	char    	*str;
 	int		i;
 
 	i = 0;
+
+
 	fd = open("text", O_RDONLY);
 	while ((i <= 6))
 	{
