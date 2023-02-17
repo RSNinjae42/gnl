@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 13:46:18 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/17 13:40:23 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
+/* XA PODER USAR READ */
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
