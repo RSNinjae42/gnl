@@ -9,3 +9,5 @@
 	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/RSNinjae42/gnl?color=blue" />
 	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/RSNinjae42/gnl?color=green" />
 </p>
+
+Ya sea un archivo, la entrada, o incluso una conexión de red, tendrás que leer siempre el contenido línea por línea. Es hora de empezar a trabajar en esta función, que será esencial en tus proyectos futuros.
