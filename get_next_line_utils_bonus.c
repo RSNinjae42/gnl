@@ -3,24 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:16:58 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 13:40:30 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/20 17:39:10 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_free(char *s, char *b)
+char	*ft_free(char *s)
 {
-	if (s)
-	{
-		free (s);
-		s = NULL;
-	}
-	if (b)
-		free (b);
+	free (s);
+	s = NULL;
 	return (s);
 }
 
@@ -61,7 +56,7 @@ char	*ft_strjoin(char *s, char *b)
 		r = malloc(sizeof(char) * (check_newline(s, 1)
 					+ check_newline(b, 1) + 1));
 	if (!r)
-		return (ft_free(r, NULL));
+		return (ft_free(r));
 	x = 0;
 	y = 0;
 	if (s)
@@ -71,7 +66,7 @@ char	*ft_strjoin(char *s, char *b)
 	while (b[y])
 		r[x++] = b[y++];
 	r[x] = '\0';
-	ft_free(s, b);
+	ft_free(s);
 	return (r);
 }
 

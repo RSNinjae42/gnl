@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:17:16 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 18:26:37 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:03:01 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,17 @@
 
 char	*ft_read(int fd, char *s)
 {
-	char	*b;
+	char	b[BUFFER_SIZE + 1];
 	int		x;
 
 	x = 1;
 	while (x != 0)
 	{
-		b = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!b)
-			return (NULL);
-		x = (int)read(fd, b, BUFFER_SIZE);
+		x = (int)read(fd, &b, BUFFER_SIZE);
 		if (x == -1)
-			return (ft_free(s, b));
+			return (ft_free(s));
 		if (x == 0)
-		{
-			free (b);
 			break ;
-		}
 		b[x] = '\0';
 		s = ft_strjoin(s, b);
 		if (!s)
@@ -117,7 +111,7 @@ int	ft_clean(char **s)
 
 char	*get_next_line(int fd)
 {
-	static char	*s[4096];
+	static char	*s[1024];
 	char		*line;
 	int			x;
 
@@ -130,12 +124,12 @@ char	*get_next_line(int fd)
 	}
 	s[fd] = ft_read(fd, s[fd]);
 	if (!s[fd])
-		return (ft_free(s[fd], NULL));
+		return (ft_free(s[fd]));
 	x = s_line(s[fd], &line);
 	if (x == 1)
-		return (ft_free(line, NULL));
+		return (ft_free(line));
 	x = ft_clean(&s[fd]);
 	if (x == 1)
-		return (ft_free (line, NULL));
+		return (ft_free (line));
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 18:30:05 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:34:28 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-/* XA PODER USAR READ */
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
@@ -42,6 +41,6 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_newline(char *s, char **line);
 char	*ft_copy(char *s, char *aux);
-char	*ft_free(char *s, char *b);
+char	*ft_free(char *s);
 int		check_newline(char *s, int y);
 #endif
