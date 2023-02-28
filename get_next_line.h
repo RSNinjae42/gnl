@@ -6,7 +6,7 @@
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/17 13:46:18 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/28 19:53:41 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
-# if BUFFER_SIZE > 9223372036854775806
-#  undef BUFFER_SIZE
-#  define BUFFER_SIZE 0
-# endif
-
-typedef struct s_list
-{
-	char			*content;
-	struct s_list	*next;
-}t_list;
 
 /* ---------- GNL ---------- */
 char	*ft_read(int fd, char *s);

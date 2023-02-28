@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:14:41 by rofuente          #+#    #+#             */
-/*   Updated: 2023/02/20 17:34:28 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:53:57 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
-typedef struct s_list
-{
-	char			*content;
-	struct s_list	*next;
-}t_list;
 
 /* ---------- GNL ---------- */
 char	*ft_read(int fd, char *s);
